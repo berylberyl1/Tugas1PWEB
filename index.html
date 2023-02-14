@@ -1,0 +1,110 @@
+<html>
+    <body style="background-color: #f0e4b1;"></body>
+    <head>
+        <title>
+            Tugas 1 Pemrograman Web
+        </title>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        
+        <style>
+            .profilebox {
+                padding: 20px 0;
+                width: 600px;
+                text-align:left;
+                background: #f7d263;
+                margin: 10px;
+                display: inline-block;
+            }
+
+            li.highlight {
+                background: #ff8819
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div id="app">
+            <b><font size = "10">{{title}}</font></b>
+            <br>
+            <img :src="image">
+            <br>
+            
+            <!--List Box-->
+            <div class="profilebox">
+                <!--Button Show List-->
+                <b><font size = "5">This is a list :)</font></b>
+                <button @click="showList()"> 
+                    <span v-if="listShow">-</span>
+                    <span v-else>+</span>
+                </button>
+                <br>
+                <div v-if="listShow">
+                    <ul>
+                        <li><b>Profile</b>
+                        <button @click="showProfile()"> 
+                            <span v-if="profileShow">-</span>
+                            <span v-else>+</span>
+                        </button></li>
+                        <div v-if="profileShow">
+                            <ul>
+                                <li><p>Nama: {{name}}</p></li>
+                                <li><p>NRP: {{id}}</p></li>
+                                <li>Umur: {{age}}
+                                <button @click="decreaseAge()"><</button>
+                                <button @click="increaseAge()">></button>
+                            </li>
+                            </ul>
+                        </div>
+                        <br>
+
+                        <li><b>Random Links</b>
+                        <button @click="showLink()"> 
+                            <span v-if="linkShow">-</span>
+                            <span v-else>+</span>
+                        </button></li>
+                        <div v-if="linkShow">
+                            <ul>
+                                <li v-for="rdlink in randomLinks" :class="{highlight: rdlink.highlight}">
+                                    <p @click = "highlightLink(rdlink)">{{rdlink.title}} <a :href="rdlink.link">Click here!</a></p>
+                                    <!--<button @click="highlightLink(rdlink.title) ">O</button></p>-->
+                                </li>
+                            </ul>
+                            <p><font size = "-3">*Click title to highlight*</font></p>
+                        </div>
+                        <br>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div class="profilebox">
+                <b><font size = "5">Favorites!</font></b>
+                <button @click="showFav()"> 
+                    <span v-if="favShow">-</span>
+                    <span v-else>+</span>
+                </button>
+                <div v-if="favShow">
+                    <ul>
+                        <li v-for="rdlink in favoritedLink" :class="{highlight: rdlink.highlight} ">
+                            <p @click = "highlightLink(rdlink.title)">{{rdlink.title}} <a :href="rdlink.link">Click here!</a></p>
+                            <!--<button @click="highlightLink(rdlink.title) ">O</button></p>-->
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            
+            
+            
+
+            
+            <!--<div class="box" @mousemove="mousePosition">X: {{x}} Y: {{y}}</div>-->
+            <!--<div class="li.highlight" @click="highlightLink()</div>-->
+            
+
+            <p><button @click="changeTitle('Tugas 1 Pemrograman Web Beryl-5025201029')"> Ganti title </button></p>
+
+        </div>
+        <script src="app.js"></script>
+    </body>
+</html>
